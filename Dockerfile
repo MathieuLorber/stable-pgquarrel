@@ -1,9 +1,12 @@
 FROM postgres:15.4-alpine3.18
 
 RUN apk update
+# ok
 #RUN apk add alpine-sdk
-RUN apk add gcc
-# try build-base gcc
+# => semble mieux
+RUN apk add build-base
+# ko seul
+#RUN apk add gcc
 RUN apk add git
 RUN apk add make
 RUN apk add cmake
