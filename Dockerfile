@@ -6,9 +6,9 @@ RUN apk add alpine-sdk
 RUN apk add git
 RUN apk add make
 RUN apk add cmake
-RUN git clone https://github.com/eulerto/pgquarrel.git && cd pgquarrel
-#RUN cmake -DCMAKE_INSTALL_PREFIX=$HOME/pgquarrel -DCMAKE_PREFIX_PATH=/usr/lib/postgresql/15
-#RUN make
-#RUN make install
+RUN git clone https://github.com/eulerto/pgquarrel.git
+RUN cd pgquarrel && cmake -DCMAKE_INSTALL_PREFIX=/pgquarrel -DCMAKE_PREFIX_PATH=/usr/lib/postgresql/15 .
+RUN cd pgquarrel && make
+RUN cd pgquarrel && make install
 
 RUN which psql
