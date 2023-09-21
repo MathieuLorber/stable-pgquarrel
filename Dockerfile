@@ -17,4 +17,4 @@ RUN cd pgquarrel && cmake -DCMAKE_INSTALL_PREFIX=/pgquarrel -DCMAKE_PREFIX_PATH=
 RUN cd pgquarrel && make
 RUN cd pgquarrel && make install
 
-ENTRYPOINT pgquarrel/pgquarrel
+ENTRYPOINT pgquarrel/pgquarrel --source-host=127.0.0.1 --source-port=5432 --source-dbname=templatesample-dbtooling --source-user=mlo --source-no-password --target-host=127.0.0.1 --target-port=5432 --target-dbname=templatesample --target-user=mlo --target-no-password
