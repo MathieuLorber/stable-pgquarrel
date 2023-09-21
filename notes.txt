@@ -1,0 +1,30 @@
+pgquarrel
+	docker build -t pgquarrel . ; docker run --rm -ti pgquarrel
+	docker run -ti pgquarrel /bin/bash
+
+
+	cmake -DCMAKE_INSTALL_PREFIX=/pgquarrel -DCMAKE_PREFIX_PATH=/usr/lib/postgresql/15 .
+
+reprendre notes des sites
+
+
+
+pgquarrel --source-host=localhost --source-port=5432 --source-dbname=templatesample-dbtooling --source-user=mlo --source-no-password --target-host=localhost --target-port=5432 --target-dbname=templatesample --target-user=mlo --target-no-password
+
+
+docker run --rm -ti pgquarrel --net=host --source-host=localhost --source-port=5432 --source-dbname=templatesample-dbtooling --source-user=mlo --source-password= --target-host=localhost --target-port=5432 --target-dbname=templatesample --target-user=mlo --target-password=
+
+
+
+
+docker run --rm -ti pgquarrel --net=host --source-host=localhost --source-port=5432 --source-dbname=templatesample-dbtooling --source-user=mlo --source-no-password --target-host=localhost --target-port=5432 --target-dbname=templatesample --target-user=mlo --target-no-password
+
+
+docker --net=host run --rm -ti pgquarrel --version
+
+docker --net=host run --rm -ti pgquarrel --source-host=localhost --source-port=5432 --source-dbname=templatesample-dbtooling --source-user=mlo --source-no-password --target-host=localhost --target-port=5432 --target-dbname=templatesample --target-user=mlo --target-no-password
+
+
+ensuite tu run ton container avec un truc du genre (pas vérifié) `docker run --rm -ti -v /localpath:/in_container_path montool --tool-opt1...`
+
+docker run --net=host --rm -ti pgquarrel
