@@ -24,4 +24,4 @@ CMD ./prepare-database.sh \
     pgquarrel/pgquarrel --source-host=psql --source-user=postgres --source-no-password \
                         --source-dbname=source --source-user=$USER \
                         --target-host=psql --target-user=postgres --target-no-password \
-                        --target-dbname=target --target-user=$USER
+                        --target-dbname=target --target-user=$USER > ./scripts/result.sql
