@@ -1,6 +1,5 @@
 createdb -h psql -U postgres --no-password source
 
-# TODO permit a binary dump
 createdb -h psql -U postgres --no-password target
 TARGET_DUMP=/scripts/target.sql
 if test -f "$TARGET_DUMP"; then
