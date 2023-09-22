@@ -20,4 +20,6 @@ RUN cd pgquarrel && make install
 COPY compare.sh compare.sh
 RUN chmod +x compare.sh
 
+RUN mkdir result
+
 CMD ./compare.sh
