@@ -21,5 +21,7 @@ COPY prepare-database.sh prepare-database.sh
 RUN chmod +x prepare-database.sh
 
 CMD ./prepare-database.sh \
-    pgquarrel/pgquarrel --source-host=psql --source-user=postgres --source-dbname=source --source-user=$USER --source-no-password \
-                        --target-host=psql --target-user=postgres --target-dbname=target --target-user=$USER --target-no-password
+    pgquarrel/pgquarrel --source-host=psql --source-user=postgres --source-no-password \
+                        --source-dbname=source --source-user=$USER \
+                        --target-host=psql --target-user=postgres --target-no-password \
+                        --target-dbname=target --target-user=$USER
