@@ -17,11 +17,7 @@ RUN cd pgquarrel && cmake -DCMAKE_INSTALL_PREFIX=/pgquarrel -DCMAKE_PREFIX_PATH=
 RUN cd pgquarrel && make
 RUN cd pgquarrel && make install
 
-COPY prepare-database.sh prepare-database.sh
-RUN chmod +x prepare-database.sh
+COPY compare.sh compare.sh
+RUN chmod +x compare.sh
 
-CMD ./prepare-database.sh \
-    pgquarrel/pgquarrel --source-host=psql --source-user=postgres --source-no-password \
-                        --source-dbname=source --source-user=$USER \
-                        --target-host=psql --target-user=postgres --target-no-password \
-                        --target-dbname=target --target-user=$USER > ./scripts/result.sql
+CMD ./compare.sh

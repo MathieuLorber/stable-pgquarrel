@@ -13,3 +13,11 @@ TARGET_DUMP=/scripts/target.sql
 if test -f "$TARGET_DUMP"; then
   psql -h psql -U postgres -d target < $TARGET_DUMP
 fi
+
+pgquarrel/pgquarrel --source-host=psql --source-username=postgres --source-no-password \
+                        --source-dbname=source --source-user=$USER \
+                        --target-host=psql --target-username=postgres --target-no-password \
+                        --target-dbname=target --target-user=$USER > ./scripts/result.sql
+
+dropdb source
+dropdb target
