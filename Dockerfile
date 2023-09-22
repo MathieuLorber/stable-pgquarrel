@@ -9,9 +9,9 @@ RUN git clone https://github.com/eulerto/pgquarrel.git
 RUN cd pgquarrel && cmake -DCMAKE_INSTALL_PREFIX=/pgquarrel -DCMAKE_PREFIX_PATH=/usr/lib/postgresql/15 .
 RUN cd pgquarrel && make
 RUN cd pgquarrel && make install
-
 COPY prepare-database.sh prepare-database.sh
+RUN chmod +x prepare-database.sh
 
-ENTRYPOINT ./prepare-database.sh \
+CMD ./prepare-database.sh \
     pgquarrel/pgquarrel --source-dbname=source --source-user=$USER --source-no-password \
                         --target-dbname=target --target-user=$USER --target-no-password
