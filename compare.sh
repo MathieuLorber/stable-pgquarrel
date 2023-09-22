@@ -19,7 +19,7 @@ fi
 
 pgquarrel/pgquarrel --source-host=psql --source-user=postgres --source-no-password --source-dbname=source \
                     --target-host=psql --target-user=postgres --target-no-password --target-dbname=target \
-                    > ./scripts/pgquarrel-diff.sql
+                    > ./result/pgquarrel.sql
 
 dropdb -h psql -U postgres --no-password source
 dropdb -h psql -U postgres --no-password target
