@@ -19,5 +19,7 @@ pgquarrel/pgquarrel --source-host=psql --source-username=postgres --source-no-pa
                         --target-host=psql --target-username=postgres --target-no-password \
                         --target-dbname=target --target-user=$USER > ./scripts/result.sql
 
-dropdb source
-dropdb target
+echo prout > ./scripts/prout.txt
+
+dropdb -h psql -U postgres --no-password source
+dropdb -h psql -U postgres --no-password target
