@@ -12,6 +12,6 @@ RUN cd pgquarrel && make install
 COPY prepare-database.sh prepare-database.sh
 RUN chmod +x prepare-database.sh
 
-CMD ./prepare-database.sh \
-    pgquarrel/pgquarrel --source-dbname=source --source-user=$USER --source-no-password \
-                        --target-dbname=target --target-user=$USER --target-no-password
+#CMD ./prepare-database.sh \
+#    pgquarrel/pgquarrel --source-dbname=source --source-user=$USER --source-no-password \
+#                        --target-dbname=target --target-user=$USER --target-no-password
