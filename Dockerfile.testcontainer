@@ -1,0 +1,45 @@
+# Dockerfile optimisé pour testcontainers
+# Version simplifiée avec le binaire pgquarrel prêt à l'emploi
+
+# Stage 1: Build
+FROM alpine:3.20 AS builder
+
+RUN apk add --no-cache \
+    postgresql16-dev \
+    build-base \
+    cmake \
+    git
+
+WORKDIR /build
+RUN git clone https://github.com/eulerto/pgquarrel.git && \
+    cd pgquarrel && \
+    cmake \
+        -DCMAKE_INSTALL_PREFIX=/usr/local \
+        -DCMAKE_PREFIX_PATH=/usr/lib/postgresql16 \
+        -DCMAKE_BUILD_TYPE=Release \
+        . && \
+    make -j$(nproc) && \
+    make install DESTDIR=/install
+
+# Stage 2: Runtime minimal pour tests
+FROM alpine:3.20
+
+# Labels pour testcontainers
+LABEL org.testcontainers.image="pgquarrel-test"
+LABEL org.testcontainers.version="1.0"
+
+RUN apk add --no-cache \
+    postgresql16-client \
+    libpq \
+    bash
+
+COPY --from=builder /install/usr/local/bin/pgquarrel /usr/local/bin/pgquarrel
+
+# Pour testcontainers, pas besoin d'utilisateur non-root
+WORKDIR /workspace
+
+# Vérifier que pgquarrel fonctionne
+RUN pgquarrel --version || true
+
+# Pas d'ENTRYPOINT pour plus de flexibilité avec testcontainers
+CMD ["/bin/sh"]
